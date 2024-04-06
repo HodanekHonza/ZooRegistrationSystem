@@ -17,13 +17,11 @@ public class Animal {
     public UUID getUUID() {
         return uuid;
     }
-    @Override
-    public String toString() {
-        return name;
-    }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public Animal(String name) {
         this.uuid = UUID.randomUUID();
         this.name = name;
