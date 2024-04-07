@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.zoo.Animal;
 import org.example.zoo.Pavilon;
+import org.example.zoo.Veterinary;
 import org.example.zoo.Zoo;
 
 public class Main {
@@ -17,7 +18,12 @@ public class Main {
         zooPrague.AddAnimalToPavilon("American animals", new Animal("Bear"));
         zooPrague.listAnimalsFromPavilon("American animals");
         zooPrague.listAnimalsFromPavilon("African animals");
-        zooPrague.todayCareForAnimal("American animals", "Bear");
+
+        zooPrague.addVeterinary(new Veterinary("African animals"));
+        zooPrague.veterinaryCare("African animals", zooPrague.getAnimal("African animals", "Leopard"));
+        zooPrague.veterinaryCare("African animals", zooPrague.getAnimal("African animals", "Zebra"));
+        zooPrague.getVeterinary("African animals").listAnimalsInVeterinary();
+
 //        Zoo zooPilsen = new Zoo("Pilsen");
 //        zooPilsen.addPavilon(new Pavilon("American animals"));
 //        zooPilsen.listPavilons();

@@ -1,9 +1,6 @@
 package org.example.zoo;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 //test case from main
 public class Pavilon {
@@ -35,16 +32,12 @@ public class Pavilon {
         }
     }
 
-
-    // this function will serve different purpose, i just needed to connect it, will update animal status and
-    // write vet note to file system, but need vet class for that first, that's challenge for tomorrow.
-    public void animalCareToday(String nameOfAnimal) {
+    public void getAnimal(String nameOfAnimal) {
         for (UUID element : animalUUIDs) {
-            Database.animalHashMap.forEach((key, value) -> {
-                if (nameOfAnimal.equals(value.getName()) && key.equals(element)) {
-                    System.out.println(value.getName());
-                }
-            });
+            Animal animal = Database.animalHashMap.get(element);
+            if (animal != null && nameOfAnimal.equals(animal.getName())) {
+                System.out.println(animal.getName());
+            }
         }
     }
 

@@ -1,13 +1,14 @@
 package org.example.zoo;
 
+import java.time.LocalTime;
 import java.util.UUID;
 
 public class Animal {
     private String name;
     private UUID uuid;
-    private int timeOfFeeding;
+    private LocalTime timeOfFeeding;
 
-    private boolean wasCheckedByVetToday;
+    private LocalTime lastTimeCheckedByVeterinary;
 
     public String getName() {
         return name;
@@ -18,6 +19,17 @@ public class Animal {
         return uuid;
     }
 
+    public LocalTime getTimeOfFeeding() {
+        return timeOfFeeding;
+    }
+
+    public void setTimeOfFeeding(LocalTime time) {
+       this.timeOfFeeding = time;
+    }
+
+    public void setTimeOfVeterinaryCheck(LocalTime time) {
+        this.lastTimeCheckedByVeterinary = time;
+    }
     public void setName(String name) {
         this.name = name;
     }

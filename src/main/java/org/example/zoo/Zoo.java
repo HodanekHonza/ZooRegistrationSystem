@@ -1,18 +1,46 @@
 package org.example.zoo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class Zoo {
     public String name;
     private ArrayList<UUID> pavilonUUIDs = new ArrayList<>();
 
+    private ArrayList<UUID> veterinaryUUIDs = new ArrayList<>();
 
     public void addPavilon(Pavilon pavilon) {
         UUID uuid = UUID.randomUUID();
         pavilonUUIDs.add(uuid);
         Database.pavilonHashMap.put(uuid, pavilon);
+    }
+
+    public void addVeterinary(Veterinary veterinary) {
+        UUID uuid = UUID.randomUUID();
+        veterinaryUUIDs.add(uuid);
+        Database.veterinaryHashMap.put(uuid, veterinary);
+    }
+
+//    apperently you cant return Animal from foreach so i need to use chatgpt aproach
+//    public Veterinary getVeterinary(String nameOfVeterinary) {
+//        Database.veterinaryHashMap.forEach((key, value) -> {
+//            if (value != null && value.getNameOfVeterinary().equals(nameOfVeterinary)) {
+//                return value;
+//            }
+//        });
+//        return null;
+//    }
+//
+
+    public Veterinary getVeterinary(String nameOfVeterinary) {
+        for (Map.Entry<UUID, Veterinary> entry : Database.veterinaryHashMap.entrySet()) {
+            Veterinary veterinary = entry.getValue();
+            if (veterinary != null && veterinary.getNameOfVeterinary().equals(nameOfVeterinary)) {
+                return veterinary;
+            }
+        }
+        return null;
     }
 
     public void listPavilons() {
@@ -40,10 +68,20 @@ public class Zoo {
         });
     }
 
-    public void todayCareForAnimal(String nameOfPavilon, String nameOfAnimal) {
+    public Animal getAnimal(String nameOfPavilon, String nameOfAnimal) {
         Database.pavilonHashMap.forEach((key, value) -> {
             if (nameOfPavilon.equals(value.getNameOfPavilon())) {
-                value.animalCareToday(nameOfAnimal);
+                value.getAnimal(nameOfAnimal);
+            }
+        });
+        return null;
+    }
+
+
+    public void veterinaryCare(String nameOfVeterinaryCare, Animal animal) {
+        Database.veterinaryHashMap.forEach((key, value) -> {
+            if (value.getNameOfVeterinary().equals(nameOfVeterinaryCare)) {
+                value.addAnimalToVeterinaryAndWriteNote(animal);
             }
         });
     }
@@ -60,6 +98,10 @@ public class Zoo {
         });
         System.out.println("------------------------");
         System.out.println();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Zoo(String name) {
