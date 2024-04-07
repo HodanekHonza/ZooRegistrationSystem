@@ -34,9 +34,17 @@ public class Zoo {
 //
 
     public Veterinary getVeterinary(String nameOfVeterinary) {
+//        for (UUID uuid : veterinaryUUIDs) {
+//            Database.veterinaryHashMap.forEach((key,value) -> {
+//                if (value.getNameOfVeterinary().equals(nameOfVeterinary) && key == uuid) {
+//                    return value;
+//                }
+//            });
+//        }
         for (Map.Entry<UUID, Veterinary> entry : Database.veterinaryHashMap.entrySet()) {
             Veterinary veterinary = entry.getValue();
             if (veterinary != null && veterinary.getNameOfVeterinary().equals(nameOfVeterinary)) {
+                //System.out.println(veterinary);
                 return veterinary;
             }
         }
@@ -68,20 +76,38 @@ public class Zoo {
         });
     }
 
-    public Animal getAnimal(String nameOfPavilon, String nameOfAnimal) {
-        Database.pavilonHashMap.forEach((key, value) -> {
-            if (nameOfPavilon.equals(value.getNameOfPavilon())) {
-                value.getAnimal(nameOfAnimal);
+
+
+    // WHY DIDNT THE SECOND APROACH WORK? need to ask teacher
+    public UUID getAnimalUUID(String nameOfPavilon, String nameOfAnimal) {
+        for (Map.Entry<UUID, Pavilon> entry : Database.pavilonHashMap.entrySet()) {
+            Pavilon pavilon = entry.getValue();
+            if (nameOfPavilon.equals(pavilon.getNameOfPavilon())) {
+                UUID animalUUID = pavilon.getAnimalUUID(nameOfAnimal);
+                if (animalUUID != null) {
+                    return animalUUID;
+                }
             }
-        });
+        }
         return null;
     }
 
+//    public UUID getAnimal(String nameOfPavilon, String nameOfAnimal) {
+//
+//        Database.pavilonHashMap.forEach((key, value) -> {
+//            if (nameOfPavilon.equals(value.getNameOfPavilon())) {
+//                value.getAnimal(nameOfAnimal);
+//
+//            }
+//        });
+//        return null;
+//    }
 
-    public void veterinaryCare(String nameOfVeterinaryCare, Animal animal) {
+
+    public void veterinaryCare(String nameOfVeterinaryCare, UUID animalUUID) {
         Database.veterinaryHashMap.forEach((key, value) -> {
             if (value.getNameOfVeterinary().equals(nameOfVeterinaryCare)) {
-                value.addAnimalToVeterinaryAndWriteNote(animal);
+                value.addAnimalToVeterinaryAndWriteNote(animalUUID);
             }
         });
     }

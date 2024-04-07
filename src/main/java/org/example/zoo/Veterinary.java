@@ -8,19 +8,18 @@ public class Veterinary {
 
     private String nameOfVeterinary;
 
-    public void addAnimalToVeterinaryAndWriteNote(Animal animal) {
-        UUID uuid = UUID.randomUUID();
-        animalUUIDs.add(uuid);
-        // CsvWriterVeterinary.writeDataLineByLine("/home/jan/IdeaProjects/ZooRegistrationSystem/src/main/java/org/example/data.csv", animal);
+    public void addAnimalToVeterinaryAndWriteNote(UUID animalUUID) {
+        animalUUIDs.add(animalUUID);
+        CsvWriterVeterinary.writeDataLineByLine("/home/jan/IdeaProjects/ZooRegistrationSystem/src/main/java/org/example/data.csv", animalUUID);
     }
 
     public void listAnimalsInVeterinary() {
         System.out.println();
-        System.out.println("------------------------");
         System.out.println("List of Animals in - " + nameOfVeterinary + " - Veterinary");
+        System.out.println("------------------------");
         for (UUID uuid : animalUUIDs) {
             Database.animalHashMap.forEach((key, value) -> {
-                if (uuid == key) {
+                if (uuid.equals(value.getUUID())) {
                     System.out.println(value.getName());
                 }
             });

@@ -20,8 +20,9 @@ public class Main {
         zooPrague.listAnimalsFromPavilon("African animals");
 
         zooPrague.addVeterinary(new Veterinary("African animals"));
-        zooPrague.veterinaryCare("African animals", zooPrague.getAnimal("African animals", "Leopard"));
-        zooPrague.veterinaryCare("African animals", zooPrague.getAnimal("African animals", "Zebra"));
+
+       zooPrague.veterinaryCare("African animals", zooPrague.getAnimalUUID("African animals", "Zebra"));
+        zooPrague.veterinaryCare("African animals", zooPrague.getAnimalUUID("African animals", "Leopard"));
         zooPrague.getVeterinary("African animals").listAnimalsInVeterinary();
 
 //        Zoo zooPilsen = new Zoo("Pilsen");

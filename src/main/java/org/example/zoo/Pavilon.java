@@ -2,6 +2,7 @@ package org.example.zoo;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
 //test case from main
 public class Pavilon {
     private String nameOfPavilon;
@@ -19,11 +20,6 @@ public class Pavilon {
 
     public void listAnimalsInPavilon() {
         for (UUID element : animalUUIDs) {
-//            alternative suggested by gpt, mine works good but i guess one less forEach is better
-//            Animal animal = Database.animalHashMap.get(element);
-//            if (animal != null) {
-//                System.out.println(animal.getName());
-//            }
             Database.animalHashMap.forEach((key, value) -> {
                 if (element == key) {
                     System.out.println(value.getName());
@@ -32,13 +28,14 @@ public class Pavilon {
         }
     }
 
-    public void getAnimal(String nameOfAnimal) {
+    public UUID getAnimalUUID(String nameOfAnimal) {
         for (UUID element : animalUUIDs) {
             Animal animal = Database.animalHashMap.get(element);
             if (animal != null && nameOfAnimal.equals(animal.getName())) {
-                System.out.println(animal.getName());
+                return animal.getUUID();
             }
         }
+        return null;
     }
 
     public Pavilon(String nameOfPavilon) {
