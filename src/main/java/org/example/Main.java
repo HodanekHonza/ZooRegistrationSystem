@@ -20,13 +20,16 @@ public class Main {
         zooPrague.listAnimalsFromPavilon("African animals");
 
         zooPrague.addVeterinary(new Veterinary("African animals"));
+        System.out.println(zooPrague.getAnimal("African animals", "Lion"));
 
-       zooPrague.veterinaryCare("African animals", zooPrague.getAnimalUUID("African animals", "Zebra"));
-        zooPrague.veterinaryCare("African animals", zooPrague.getAnimalUUID("African animals", "Leopard"));
+
+
+
+        //zooPrague.getVeterinary("African animals").addAnimalToVeterinary(zooPrague.getAnimal("African animals", "Lion").getUUID());
+        zooPrague.addAnimalToVeterinary("African animals",zooPrague.getAnimal("African animals", "Lion"));
+        zooPrague.addAnimalToVeterinary("African animals",zooPrague.getAnimal("African animals", "Zebra"));
+        //zooPrague.getVeterinary("African animals").checkHealthOfAnimal(zooPrague.getAnimal("African animals", "Lion"));
         zooPrague.getVeterinary("African animals").listAnimalsInVeterinary();
 
-//        Zoo zooPilsen = new Zoo("Pilsen");
-//        zooPilsen.addPavilon(new Pavilon("American animals"));
-//        zooPilsen.listPavilons();
     }
 }

@@ -76,16 +76,24 @@ public class Zoo {
         });
     }
 
+    public void addAnimalToVeterinary(String nameOfVeterinary
+            , Animal animal) {
+        Database.veterinaryHashMap.forEach((key, value) -> {
+            if (value.getNameOfVeterinary().equals(nameOfVeterinary)) {
+                value.addAnimalToVeterinary(animal.getUUID());
+            }
+        });
+    }
 
 
     // WHY DIDNT THE SECOND APROACH WORK? need to ask teacher
-    public UUID getAnimalUUID(String nameOfPavilon, String nameOfAnimal) {
+    public Animal getAnimal(String nameOfPavilon, String nameOfAnimal) {
         for (Map.Entry<UUID, Pavilon> entry : Database.pavilonHashMap.entrySet()) {
             Pavilon pavilon = entry.getValue();
             if (nameOfPavilon.equals(pavilon.getNameOfPavilon())) {
-                UUID animalUUID = pavilon.getAnimalUUID(nameOfAnimal);
-                if (animalUUID != null) {
-                    return animalUUID;
+                Animal animal = pavilon.getAnimal(nameOfAnimal);
+                if (animal != null) {
+                    return animal;
                 }
             }
         }
@@ -104,13 +112,13 @@ public class Zoo {
 //    }
 
 
-    public void veterinaryCare(String nameOfVeterinaryCare, UUID animalUUID) {
-        Database.veterinaryHashMap.forEach((key, value) -> {
-            if (value.getNameOfVeterinary().equals(nameOfVeterinaryCare)) {
-                value.addAnimalToVeterinaryAndWriteNote(animalUUID);
-            }
-        });
-    }
+//    public void veterinaryCare(String nameOfVeterinaryCare, UUID animalUUID) {
+//        Database.veterinaryHashMap.forEach((key, value) -> {
+//            if (value.getNameOfVeterinary().equals(nameOfVeterinaryCare)) {
+//                value.addAnimalToVeterinaryAndWriteNote(animalUUID);
+//            }
+//        });
+//    }
 
     public void listAnimalsFromPavilon(String nameOfPavilon) {
         System.out.println();
