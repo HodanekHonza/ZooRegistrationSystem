@@ -1,7 +1,20 @@
 package org.example.services;
 
-public class ReservationService {
-    public static void validateReservation(int uuid) {
+import org.example.zoo.ReservationSystem;
+import org.example.zoo.Zoo;
 
+public class ReservationService {
+        private static ReservationSystem instance;
+
+
+        private ReservationService() {
+        }
+
+
+        public static ReservationSystem createReservationSystem(String name) {
+            if (instance == null) {
+                instance = new ReservationSystem();
+            }
+            return instance;
+        }
     }
-}

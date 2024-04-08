@@ -22,7 +22,7 @@ public class Zoo {
         Database.veterinaryHashMap.put(uuid, veterinary);
     }
 
-//    apperently you cant return Animal from foreach so i need to use chatgpt aproach
+//    apperently you cant return Animal from foreach you can only do that from a map, so i need to use chatgpt aproach
 //    public Veterinary getVeterinary(String nameOfVeterinary) {
 //        Database.veterinaryHashMap.forEach((key, value) -> {
 //            if (value != null && value.getNameOfVeterinary().equals(nameOfVeterinary)) {
