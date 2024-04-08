@@ -1,23 +1,23 @@
 package org.example.services;
+import org.example.zoo.Zoo;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class ZooService {
 
-    private static ZooService instance;
+    private static Zoo instance;
 
-    // Private constructor to prevent instantiation from outside
+
     private ZooService() {
-        // Initialize your service here
     }
 
-    // Method to get the singleton instance of ZooService
-    public static synchronized ZooService getInstance() {
+
+    public static Zoo createZoo(String name) {
         if (instance == null) {
-            instance = new ZooService();
+            instance = new Zoo(name);
         }
         return instance;
     }
-
-    // Your methods for interacting with the ZooService go here
-
 }
 
