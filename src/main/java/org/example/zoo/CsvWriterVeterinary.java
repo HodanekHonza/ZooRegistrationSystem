@@ -11,16 +11,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 public class CsvWriterVeterinary {
-    public static void writeDataLineByLine(String filePath, UUID animalUUID) {
-        Animal animal = null;
-        // why cant i just use forEach? i need to learn this or use streams next time
-        for (Map.Entry<UUID, Animal> entry : Database.animalHashMap.entrySet()) {
-            if (entry.getKey().equals(animalUUID)) {
-                animal = entry.getValue();
-                System.out.println(animal);
-                break;
-            }
-        }
+    public static void writeDataLineByLine(String filePath, Animal animal) {
         boolean fileExists = new File(filePath).exists();
         String[] header = {"UUIDofAnimal", "nameOfAnimal", "timeOfFeeding", "timeCheckedByVet"};
         try {

@@ -37,6 +37,15 @@ public class Pavilon {
         }
         return null;
     }
+    public Animal getAnimal(String nameOfAnimal) {
+        for (UUID element : animalUUIDs) {
+            Animal animal = Database.animalHashMap.get(element);
+            if (animal != null && nameOfAnimal.equals(animal.getName())) {
+                return animal;
+            }
+        }
+        return null;
+    }
 
     public Pavilon(String nameOfPavilon) {
         this.nameOfPavilon = nameOfPavilon;

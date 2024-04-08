@@ -6,11 +6,20 @@ import java.util.UUID;
 public class Veterinary {
     private ArrayList<UUID> animalUUIDs = new ArrayList<>();
 
-    private String nameOfVeterinary;
+    private final String nameOfVeterinary;
 
-    public void addAnimalToVeterinaryAndWriteNote(UUID animalUUID) {
+
+    public void addAnimalToVeterinary(UUID animalUUID) {
         animalUUIDs.add(animalUUID);
-        CsvWriterVeterinary.writeDataLineByLine("/home/jan/IdeaProjects/ZooRegistrationSystem/src/main/java/org/example/data.csv", animalUUID);
+    }
+
+    public void checkHealthOfAnimal(Animal animal) {
+        for (UUID uuid : animalUUIDs) {
+            if (uuid.equals(animal.getUUID())) {
+                CsvWriterVeterinary.writeDataLineByLine("/home/jan/IdeaProjects/ZooRegistrationSystem/src/main/java/org/example/data.csv", animal);
+            }
+        }
+
     }
 
     public void listAnimalsInVeterinary() {
